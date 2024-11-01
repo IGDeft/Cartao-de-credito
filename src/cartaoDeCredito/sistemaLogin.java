@@ -5,15 +5,26 @@ import java.util.Scanner;
 public class sistemaLogin {
     public static void main (String[]args){
 
-        cartaoDeCredito c = new cartaoDeCredito();
-
-        c.setNumero("1234-5678-9876-5432");
-        c.setNomeTitular("Lucas Reis");
-        c.setCpfTitular("123.456.789-00");
-        c.setLimite(1000);
-        c.setSaldo(0);
-
         Scanner sc = new Scanner(System.in);
+
+        System.out.println("Digite o número do cartão: ");
+        String numero = sc.nextLine();
+        
+        System.out.println("Digite o nome do titular: ");
+        String nomeTitular = sc.nextLine();
+
+        System.out.println("Digite o CPF do titular: ");
+        String cpfTitular = sc.nextLine();
+
+        System.out.println("Digite o limite do cartão: ");
+        float limite = sc.nextFloat();
+
+        System.out.println("Digite a taxa de cashback padrão (%): ");
+        float cashBack = sc.nextFloat();
+
+        cartaoDeCredito c = new cartaoDeCredito(numero, nomeTitular, cpfTitular, limite, limite, cashBack);
+        c.setSaldo(0);
+        
         boolean continuar = true;
 
         while(continuar) {
@@ -25,24 +36,41 @@ public class sistemaLogin {
         System.out.println("1 - Consultar limite");
         System.out.println("2 - Consultar fatura");
         System.out.println("3 - Realizar compra");
-        System.out.println("4-  Alterar limite:");
-        System.out.println("5-  Sair");
+        System.out.println("4 - Alterar limite");
+        System.out.println("5 - Sair");
 
         System.out.println();
 
-        int opçao = sc.nextInt();
+        int opcao = sc.nextInt();
 
-        switch(opçao){
+        switch(opcao){
             case 1:
-                System.out.println("Limite disponível: " + c.consultarLimite());
+                System.out.println("Limite disponível: R$" + c.consultarLimite());
                 break;
             case 2: 
-                System.out.println("Saldo atual da fatura: " + c.consultartotalSaldo());
+                System.out.println("Saldo atual da fatura: R$" + c.consultarTotalSaldo());
                 break;
             case 3: 
                 System.out.println("Digite o valor da compra: ");
                 float valor = sc.nextFloat();
-                c.realizarTransacao(valor);
+
+                System.out.println("Escolha o tipo da compra: ");
+                System.out.println("1 - Compra normal");
+                System.out.println("2 - Compra com cashback");
+                int tipoCompra = sc.nextInt();
+
+                if(tipoCompra == 1){
+                c.realizarTransacao(valor); 
+
+                } else if (tipoCompra == 2){
+                System.out.println("Digite a taxa de cashback (%): ");
+                float taxaCashBack = sc.nextFloat();
+                c.realizarTransacao(valor, taxaCashBack); 
+
+                } else {
+                    System.out.println("Opção invalida, tente novamente.");
+                }
+                
                 break;
             case 4:
                 System.out.println("Digite o valor do novo limite: ");
