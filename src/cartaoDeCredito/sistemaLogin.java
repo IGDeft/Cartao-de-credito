@@ -7,22 +7,33 @@ public class sistemaLogin {
 
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("Digite o nome do cliente: ");
+        String nomeCliente = sc.nextLine();
+
+        System.out.println("Digite o CPF do cliente: ");
+        String cpfCliente = sc.nextLine();
+
+        System.out.println("Digite o CNPJ do cliente: ");
+        String cnpjCliente = sc.nextLine();
+
+        System.out.println("Digite o email do cliente: ");
+        String emailCliente = sc.nextLine();
+
+        System.out.println("Digite o telefone do cliente: ");
+        String telefoneCliente = sc.nextLine();
+
+        Cliente cliente = new Cliente(nomeCliente, cpfCliente, cnpjCliente, emailCliente, telefoneCliente);
+
         System.out.println("Digite o número do cartão: ");
         String numero = sc.nextLine();
-        
-        System.out.println("Digite o nome do titular: ");
-        String nomeTitular = sc.nextLine();
-
-        System.out.println("Digite o CPF do titular: ");
-        String cpfTitular = sc.nextLine();
 
         System.out.println("Digite o limite do cartão: ");
         float limite = sc.nextFloat();
 
-        System.out.println("Digite a taxa de cashback padrão (%): ");
+        System.out.println("Digite o valor do cashback (%) ");
         float cashBack = sc.nextFloat();
 
-        cartaoDeCredito c = new cartaoDeCredito(numero, nomeTitular, cpfTitular, limite, limite, cashBack);
+        cartaoDeCredito c = new cartaoDeCredito(numero, cliente, limite, limite, cashBack);
         c.setSaldo(0);
         
         boolean continuar = true;

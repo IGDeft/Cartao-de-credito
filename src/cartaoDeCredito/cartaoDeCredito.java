@@ -3,16 +3,14 @@ package cartaoDeCredito;
 public class cartaoDeCredito {
 
     private String numero;
-    private String nomeTitular;
-    private String cpfTitular;
+    private Cliente cliente;
     private float limite;
     private float saldo;
     private float cashBack;
 
-    public cartaoDeCredito(String numero, String nomeTitular, String cpfTitular, float limite, float saldo, float cashBack){
+    public cartaoDeCredito(String numero, Cliente cliente, float limite, float saldo, float cashBack){
         this.numero = numero;
-        this.nomeTitular = nomeTitular;
-        this.cpfTitular = cpfTitular;
+        this.cliente = cliente;
         this.limite = limite;
         this.saldo = saldo;
         this.cashBack = cashBack;
@@ -21,12 +19,8 @@ public class cartaoDeCredito {
     public String getNumero(){
         return numero;
     }
-    public String getNomeTitular(){
-        return nomeTitular;
-    }
-
-    public String getCpfTitular(){
-        return cpfTitular;
+    public Cliente getCliente(){
+        return cliente;
     }
 
     public float getLimite(){
@@ -44,12 +38,8 @@ public class cartaoDeCredito {
         this.numero = numero;
     }
 
-    public void setNomeTitular(String nomeTitular){
-        this.nomeTitular = nomeTitular;
-    }
-
-    public void setCpfTitular(String cpfTitular){
-        this.cpfTitular = cpfTitular;
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
     }
 
     public void setLimite(float limite){
