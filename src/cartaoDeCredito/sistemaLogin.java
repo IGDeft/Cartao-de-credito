@@ -48,7 +48,8 @@ public class sistemaLogin {
         System.out.println("2 - Consultar fatura");
         System.out.println("3 - Realizar compra");
         System.out.println("4 - Alterar limite");
-        System.out.println("5 - Sair");
+        System.out.println("5 - Exibir histórico");
+        System.out.println("6 - Sair");
 
         System.out.println();
 
@@ -89,6 +90,10 @@ public class sistemaLogin {
                 c.alterarLimite(novoLimite);
                 break;
             case 5: 
+                c.exibirHistorico();
+                break;
+
+            case 6: 
                 continuar = false;
                 System.out.println("Saindo do Menu");
                 break;
