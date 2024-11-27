@@ -10,7 +10,7 @@ public class cartaoDeCredito {
     private float limite;
     private float saldo;
     private float cashBack;
-    private ArrayList<Transacao> historicoDeTransacoes;
+    protected ArrayList<Transacao> historicoDeTransacoes;
 
     public cartaoDeCredito(String numero, Cliente cliente, float limite, float saldo, float cashBack){
         this.numero = numero;
@@ -59,7 +59,7 @@ public class cartaoDeCredito {
     }
 
     public float consultarLimite(){
-        return limite;
+        return getLimite();
 
     }
 

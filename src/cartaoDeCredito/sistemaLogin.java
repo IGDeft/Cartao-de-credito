@@ -33,8 +33,35 @@ public class sistemaLogin {
         System.out.println("Digite o valor do cashback (%) ");
         float cashBack = sc.nextFloat();
 
-        cartaoDeCredito c = new cartaoDeCredito(numero, cliente, limite, limite, cashBack);
-        c.setSaldo(0);
+        System.out.println();
+
+        System.out.println("Escolha o tipo de cartão: ");
+        System.out.println("1 - Cartão Basico");
+        System.out.println("2 - Cartão Premium");
+        System.out.println("3 - Cartão Empresarial");
+
+        System.out.println();
+
+        int tipoCartao = sc.nextInt();
+        cartaoDeCredito c;
+
+        switch (tipoCartao) {
+            case 1:
+                c = new CartaoBasico(numero, cliente, limite, limite, cashBack);
+                break;
+            case 2:
+                System.out.println("Digite o limite extra para o Cartão Premium:");
+                float limiteExtra = sc.nextFloat();
+                c = new CartaoPremium(numero, cliente, limite, limite, cashBack, limiteExtra);
+                break;
+            case 3:
+                c = new CartaoEmpresarial(numero, cliente, limite, limite, cashBack);
+                break;
+            default:
+                System.out.println("Opção inválida. Criando um Cartão Básico por padrão.");
+                c = new CartaoBasico(numero, cliente, limite, limite, cashBack);
+                break;
+        }
         
         boolean continuar = true;
 
@@ -49,7 +76,8 @@ public class sistemaLogin {
         System.out.println("3 - Realizar compra");
         System.out.println("4 - Alterar limite");
         System.out.println("5 - Exibir histórico");
-        System.out.println("6 - Sair");
+        System.out.println("6 - Realizar compra parcelada com o cartão Empresarial");
+        System.out.println("7 - Sair");
 
         System.out.println();
 
@@ -94,6 +122,18 @@ public class sistemaLogin {
                 break;
 
             case 6: 
+                if(tipoCartao == 3){
+                    System.out.println("Digite o valor da compra: ");
+                    float valorParcelado = sc.nextFloat();
+                    System.out.println("Digite o número das parcelas: ");
+                    int parcelas = sc.nextInt();
+                    ((CartaoEmpresarial) c).realizarTransacaoParcela(valorParcelado, parcelas);
+                } else {
+                    System.out.println("Esta opção só está disponivel para o cartão Empresarial.");
+                }
+                break;
+
+            case 7: 
                 continuar = false;
                 System.out.println("Saindo do Menu");
                 break;
